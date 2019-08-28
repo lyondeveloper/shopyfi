@@ -52,7 +52,7 @@ class App extends React.Component {
             exact
             path='/auth'
             render={() =>
-              this.props.currentUser ? <Redirect to='' /> : <Auth />
+              this.props.currentUser !== null ? <Redirect to='' /> : <Auth />
             }
           />
         </Switch>

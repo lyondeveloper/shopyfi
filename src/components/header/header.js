@@ -14,35 +14,42 @@ import Cart from '../cart/cart';
 
 import './header.scss';
 
-const Header = ({ currentUser, hidden }) => (
-  <div className='header'>
-    <Link className='logo-container' to='/'>
-      <Logo className='logo' />
-    </Link>
-
-    <div className='options'>
-      <Link className='option' to='/shop'>
-        SHOP
-      </Link>
-      <Link className='option' to='/contact'>
-        CONTACT
+const Header = ({ currentUser, hidden }) => {
+  return (
+    <div className='header'>
+      <Link className='logo-container' to='/'>
+        <Logo className='logo' />
       </Link>
 
-      {currentUser ? (
-        <div className='option' onClick={() => auth.signOut()}>
-          {' '}
-          SIGN OUT{' '}
-        </div>
-      ) : (
-        <Link className='option' to='/auth'>
-          SIGN IN
+      <div className='options'>
+        <Link className='option' to='/shop'>
+          SHOP
         </Link>
-      )}
-      <CartIcon />
+        <Link className='option' to='/contact'>
+          CONTACT
+        </Link>
+
+        {currentUser !== null ? (
+          <div
+            className='option'
+            onClick={() => {
+              auth.signOut();
+            }}
+          >
+            {' '}
+            SIGN OUT{' '}
+          </div>
+        ) : (
+          <Link className='option' to='/auth'>
+            SIGN IN
+          </Link>
+        )}
+        <CartIcon />
+      </div>
+      {hidden ? '' : <Cart />}
     </div>
-    {hidden ? '' : <Cart />}
-  </div>
-);
+  );
+};
 
 const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
   currentUser,
