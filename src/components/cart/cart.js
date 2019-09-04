@@ -8,10 +8,11 @@ import CartItem from '../cart-item/cart-item';
 
 import { selectCartItems } from '../../redux/cart/cartSelectors';
 import { createStructuredSelector } from 'reselect';
+import { toggleCartDropdown } from '../../redux/cart/cartActions';
 
 import './cart.scss';
 
-const Cart = ({ cartItems, history }) => (
+const Cart = ({ cartItems, history, dispatch }) => (
   <div className='cart-dropdown'>
     <div className='cart-items'>
       {cartItems.length > 0 ? (
@@ -20,7 +21,12 @@ const Cart = ({ cartItems, history }) => (
         <span className='empty-message'>Your Cart is empty</span>
       )}
     </div>
-    <CustomButton onClick={() => history.push('/checkout')}>
+    <CustomButton
+      onClick={() => {
+        history.push('/checkout');
+        dispatch(toggleCartDropdown());
+      }}
+    >
       {' '}
       GO TO CHECKOUT{' '}
     </CustomButton>
