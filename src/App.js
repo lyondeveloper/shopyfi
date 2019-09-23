@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 
 //components
@@ -15,6 +16,7 @@ import { createStructuredSelector } from 'reselect';
 import { setCurrentUser } from './redux/user/userActions';
 
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -47,6 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <ToastContainer />
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
