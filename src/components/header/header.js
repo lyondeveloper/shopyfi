@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
 import { connect } from 'react-redux';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
@@ -21,7 +19,6 @@ import {
   HeaderContainer,
   LogoContainer,
   OptionsContainer,
-  OptionDiv,
   OptionLink
 } from './header.styles';
 
@@ -37,14 +34,14 @@ const Header = ({ currentUser, hidden }) => {
         <OptionLink to='/contact'>CONTACT</OptionLink>
 
         {currentUser !== null ? (
-          <OptionDiv
+          <OptionLink as='div'
             onClick={() => {
               auth.signOut();
             }}
           >
             {' '}
             SIGN OUT{' '}
-          </OptionDiv>
+          </OptionLink>
         ) : (
           <OptionLink to='/auth'>SIGN IN</OptionLink>
         )}
