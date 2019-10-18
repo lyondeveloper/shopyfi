@@ -3,6 +3,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 //components
 import HomePage from './components/pages/homepage/homepage';
 import ShopPage from './components/pages/shop/shop';
@@ -14,9 +16,9 @@ import { auth, createUserProfileDocument } from './firebase/utils';
 import { selectCurrentUser } from './redux/user/userSelectors';
 import { createStructuredSelector } from 'reselect';
 import { setCurrentUser } from './redux/user/userActions';
+import { selectCollectionForPreview } from './redux/shop/shopSelectors';
 
 import './App.css';
-import 'react-toastify/dist/ReactToastify.css';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
