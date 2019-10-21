@@ -9,9 +9,18 @@ import { firestore, convertCollectionsToObj } from '../../../firebase/utils';
 
 import { updateCollections } from '../../../redux/shop/shopActions';
 
+import WithSpinner from '../../with-spinner/withSpinner';
+
 import './shop.scss';
 
+const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
+const CollectionWithSpinner = WithSpinner(Collection);
+
 class Shop extends React.Component {
+  state = {
+    loading: true
+  };
+
   componentDidMount() {
     const collectionRef = firestore.collection('collections');
 
@@ -24,15 +33,28 @@ class Shop extends React.Component {
       const collections = convertCollectionsToObj(snapshot);
 
       updateCollections(collections);
+      this.setState({ loading: false });
     });
   }
 
   render() {
     const { match } = this.props;
+    const { loading } = this.state;
     return (
       <div>
-        <Route exact path={`${match.path}`} component={CollectionOverview} />{' '}
-        <Route path={`${match.path}/:collectionId`} component={Collection} />
+        <Route
+          exact
+          path={`${match.path}`}
+          render={props => (
+            <CollectionOverviewWithSpinner isLoading={loading} {...props} />
+          )}
+        />{' '}
+        <Route
+          path={`${match.path}/:collectionId`}
+          render={props => (
+            <CollectionWithSpinner isLoading={loading} {...props} />
+          )}
+        />
       </div>
     );
   }

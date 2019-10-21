@@ -1,7 +1,7 @@
 import shopActionTypes from './shopTypes';
 
 const initialState = {
-  collections: {}
+  collections: null
 };
 
 export default function(state = initialState, action) {
