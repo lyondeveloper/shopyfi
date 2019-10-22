@@ -23,3 +23,9 @@ export const selectCollectionFetching = createSelector(
   [selectShop],
   shop => shop.isFetching
 );
+
+// !! is a shorthand of checking whether the value is null of undefined
+export const selectIsCollectionLoaded = createSelector(
+  [selectShop],
+  shop => !!shop.collections
+);
