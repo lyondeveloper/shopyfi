@@ -1,12 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
 import CollectionOverviewContainer from '../../collection-overview/collection-overview.container';
 import CollectionContainer from '../collection/collection.container';
-
-import { selectIsCollectionLoaded } from '../../../redux/shop/shopSelectors';
 
 import { fetchCollectionStartAsync } from '../../../redux/shop/shopActions';
 
