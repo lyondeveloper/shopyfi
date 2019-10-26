@@ -5,7 +5,6 @@ import CustomButton from '../custom-button/custom-button';
 
 import { connect } from 'react-redux';
 
-import { auth } from '../../firebase/utils';
 import {
   googleSignInStart,
   emailSignInStart

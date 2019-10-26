@@ -19,14 +19,34 @@ export const signInFailure = error => ({
   payload: error
 });
 
+export const signUp = data => ({
+  type: types.SIGN_UP,
+  payload: data
+});
+
+export const signUpSuccess = data => ({
+  type: types.SIGN_UP_SUCCESS,
+  payload: data
+});
+
+export const signUpFailure = error => ({
+  type: types.SIGN_UP_FAILURE,
+  payload: error
+});
+
 export const checkUserSession = () => ({
   type: types.CHECK_USER_SESSION
+});
+
+export const signOut = () => ({
+  type: types.SIGN_OUT
 });
 
 export const signOutSuccess = () => ({
   type: types.SIGN_OUT_SUCCESS
 });
 
-export const signOutFailure = () => ({
-  type: types.SIGN_OUT_FAILURE
+export const signOutFailure = error => ({
+  type: types.SIGN_OUT_FAILURE,
+  payload: error
 });
