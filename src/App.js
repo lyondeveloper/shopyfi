@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
@@ -19,40 +19,28 @@ import { checkUserSession } from './redux/user/userActions';
 
 import './App.css';
 
-class App extends React.Component {
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    const { checkUserSession } = this.props;
-
+const App = ({ checkUserSession, currentUser }) => {
+  useEffect(() => {
     checkUserSession();
-  }
+  }, [checkUserSession]);
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-
-  render() {
-    return (
-      <div>
-        <ToastContainer />
-        <Header />
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route path='/shop' component={ShopPage} />
-          <Route exact path='/checkout' component={Checkout} />
-          <Route
-            exact
-            path='/auth'
-            render={() =>
-              this.props.currentUser !== null ? <Redirect to='' /> : <Auth />
-            }
-          />
-        </Switch>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <ToastContainer />
+      <Header />
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route path='/shop' component={ShopPage} />
+        <Route exact path='/checkout' component={Checkout} />
+        <Route
+          exact
+          path='/auth'
+          render={() => (currentUser !== null ? <Redirect to='' /> : <Auth />)}
+        />
+      </Switch>
+    </div>
+  );
+};
 
 const mapDispatchToProps = dispatch => ({
   checkUserSession: () => dispatch(checkUserSession())

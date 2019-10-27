@@ -55,18 +55,12 @@ export function* googleSignInExecute() {
   }
 }
 
-export function* emailSignInExecute(action) {
+export function* emailSignInExecute({ payload: { email, password } }) {
   try {
-    const { payload } = action;
-
-    const user = yield auth.signInWithEmailAndPassword(
-      payload.email,
-      payload.password
-    );
-
+    const { user } = yield auth.signInWithEmailAndPassword(email, password);
     yield getSnapshotFromUserAuth(user);
-  } catch (err) {
-    yield put(signInFailure(err));
+  } catch (error) {
+    yield put(signInFailure(error));
   }
 }
 
