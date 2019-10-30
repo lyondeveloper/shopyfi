@@ -3,8 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
 
-import 'react-toastify/dist/ReactToastify.css';
-
 //components
 import HomePage from './components/pages/homepage/homepage';
 import ShopPage from './components/pages/shop/shop';
@@ -17,7 +15,8 @@ import { createStructuredSelector } from 'reselect';
 
 import { checkUserSession } from './redux/user/userActions';
 
-import './App.css';
+import { GlobalStyle } from './global.styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
@@ -28,6 +27,7 @@ const App = ({ checkUserSession, currentUser }) => {
     <div>
       <ToastContainer />
       <Header />
+      <GlobalStyle />
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/shop' component={ShopPage} />

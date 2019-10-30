@@ -71,7 +71,7 @@ export function* signUpExecute(action) {
     } = action;
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
 
-    yield put(signUpSuccess({ user, additionalData: { displayName } }));
+    yield put(signUpSuccess({ user, additionalData: { displayName } }));  
 
     toast.success('You have sign up, signing in...');
   } catch (err) {
