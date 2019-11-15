@@ -11,46 +11,93 @@ import {
 import CheckoutItem from '../../checkout-item/checkout-item';
 import StripeButton from '../../stripe-button/stripe-button';
 
-import './checkout.scss';
+// import './checkout.scss';
+
+import {
+  ButtonStyles,
+  WarningStyles,
+  TotalStyles,
+  HeaderBlockStyles,
+  CheckoutHeaderStyles,
+  CheckoutPageStyles
+} from './checkout.styles';
 
 const Checkout = ({ cartItems, total }) => (
-  <div className='checkout-page'>
-    <div className='checkout-header'>
-      <div className='header-block'>
+  <CheckoutPageStyles>
+    <CheckoutHeaderStyles>
+      <HeaderBlockStyles>
         <span>Product</span>
-      </div>
+      </HeaderBlockStyles>
 
-      <div className='header-block'>
+      <HeaderBlockStyles>
         <span>Description</span>
-      </div>
+      </HeaderBlockStyles>
 
-      <div className='header-block'>
+      <HeaderBlockStyles>
         <span>Quantity</span>
-      </div>
+      </HeaderBlockStyles>
 
-      <div className='header-block'>
+      <HeaderBlockStyles>
         <span>Price</span>
-      </div>
+      </HeaderBlockStyles>
 
-      <div className='header-block'>
+      <HeaderBlockStyles>
         <span>Remove</span>
-      </div>
-    </div>
+      </HeaderBlockStyles>
+    </CheckoutHeaderStyles>
     {cartItems.map(cartItem => (
       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
     ))}
-    <div className='total'>
+    <TotalStyles className='total'>
       <span>TOTAL: ${total}</span>
-    </div>
+    </TotalStyles>
 
-    <div className='test-warning'>
+    <WarningStyles className='test-warning'>
       * Please use the following test credit card for payments*
       <br />
       4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
-    </div>
+    </WarningStyles>
 
     <StripeButton price={total} />
-  </div>
+  </CheckoutPageStyles>
+
+  // <div className='checkout-page'>
+  //   <div className='checkout-header'>
+  //     <div className='header-block'>
+  //       <span>Product</span>
+  //     </div>
+
+  //     <div className='header-block'>
+  //       <span>Description</span>
+  //     </div>
+
+  //     <div className='header-block'>
+  //       <span>Quantity</span>
+  //     </div>
+
+  //     <div className='header-block'>
+  //       <span>Price</span>
+  //     </div>
+
+  //     <div className='header-block'>
+  //       <span>Remove</span>
+  //     </div>
+  //   </div>
+  //   {cartItems.map(cartItem => (
+  //     <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+  //   ))}
+  //   <div className='total'>
+  //     <span>TOTAL: ${total}</span>
+  //   </div>
+
+  //   <div className='test-warning'>
+  //     * Please use the following test credit card for payments*
+  //     <br />
+  //     4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
+  //   </div>
+
+  //   <StripeButton price={total} />
+  // </div>
 );
 
 const mapStateToProps = createStructuredSelector({

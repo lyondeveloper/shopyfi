@@ -3,20 +3,18 @@ import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import CustomButton from '../custom-button/custom-button';
 import CartItem from '../cart-item/cart-item';
 
 import {
   CartDropdownContainer,
   EmptyMessageContainer,
-  CartItemsContainer
+  CartItemsContainer,
+  ButtonContainer
 } from './cart.styles';
 
 import { selectCartItems } from '../../redux/cart/cartSelectors';
 import { createStructuredSelector } from 'reselect';
 import { toggleCartDropdown } from '../../redux/cart/cartActions';
-
-import './cart.scss';
 
 const Cart = ({ cartItems, history, dispatch }) => (
   <CartDropdownContainer>
@@ -27,7 +25,7 @@ const Cart = ({ cartItems, history, dispatch }) => (
         <EmptyMessageContainer>Your Cart is empty</EmptyMessageContainer>
       )}
     </CartItemsContainer>
-    <CustomButton
+    <ButtonContainer
       onClick={() => {
         history.push('/checkout');
         dispatch(toggleCartDropdown());
@@ -35,7 +33,7 @@ const Cart = ({ cartItems, history, dispatch }) => (
     >
       {' '}
       GO TO CHECKOUT{' '}
-    </CustomButton>
+    </ButtonContainer>
   </CartDropdownContainer>
 );
 

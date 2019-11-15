@@ -7,17 +7,23 @@ import {
   deleteItem
 } from '../../redux/cart/cartActions';
 
-import './checkout-item.scss';
+import {
+  RemoveButtonStyles,
+  CheckoutItemStyles,
+  ImageStyles,
+  TextStyles,
+  QuantityStyles
+} from './checkout-item.styles';
 
 const CheckoutItem = ({ cartItem, clearItemFromCart, addItem, deleteItem }) => {
   const { id, name, quantity, price, imageUrl } = cartItem;
   return (
-    <div className='checkout-item'>
-      <div className='image-container'>
+    <CheckoutItemStyles className='checkout-item'>
+      <ImageStyles className='image-container'>
         <img src={imageUrl} alt='Checkout item' />
-      </div>
-      <span className='name'> {name} </span>
-      <span className='quantity'>
+      </ImageStyles>
+      <TextStyles className='name'> {name} </TextStyles>
+      <QuantityStyles className='quantity'>
         <div className='arrow' onClick={() => deleteItem(cartItem)}>
           {' '}
           &#10094;{' '}
@@ -27,12 +33,15 @@ const CheckoutItem = ({ cartItem, clearItemFromCart, addItem, deleteItem }) => {
           {' '}
           &#10095;{' '}
         </div>
-      </span>
-      <span className='price'> {price} </span>
-      <div className='remove-button' onClick={() => clearItemFromCart(id)}>
+      </QuantityStyles>
+      <TextStyles className='price'> {price} </TextStyles>
+      <RemoveButtonStyles
+        className='remove-button'
+        onClick={() => clearItemFromCart(id)}
+      >
         &#10005;
-      </div>
-    </div>
+      </RemoveButtonStyles>
+    </CheckoutItemStyles>
   );
 };
 
@@ -42,7 +51,4 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItem(item))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(CheckoutItem);
+export default connect(null, mapDispatchToProps)(CheckoutItem);

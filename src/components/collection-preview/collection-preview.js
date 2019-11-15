@@ -10,7 +10,7 @@ import {
 
 const CollectionPreview = ({ title, items, history }) => {
   return (
-    <CollectionPreviewContainer className='collection-preview'>
+    <CollectionPreviewContainer>
       <TitleContainer
         onClick={() => history.push(`/shop/${title.toLowerCase()}`)}
       >

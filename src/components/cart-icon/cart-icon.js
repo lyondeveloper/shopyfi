@@ -9,14 +9,20 @@ import { selectCartItemsCount } from '../../redux/cart/cartSelectors';
 
 import { createStructuredSelector } from 'reselect';
 
-import './cart-icon.scss';
+import {
+  CartIconContainer,
+  ShoppingIconContainer,
+  ItemCountContainer
+} from './cart-icon.styles';
 
 const CartIcon = ({ toggleCartDropdown, itemCount }) => {
   return (
-    <div className='cart-icon' onClick={toggleCartDropdown}>
-      <ShoppingIcon className='shopping-icon' />
-      <span className='item-count'> {itemCount} </span>
-    </div>
+    <CartIconContainer onClick={toggleCartDropdown}>
+      <ShoppingIconContainer>
+        <ShoppingIcon />
+      </ShoppingIconContainer>
+      <ItemCountContainer>{itemCount}</ItemCountContainer>
+    </CartIconContainer>
   );
 };
 
@@ -28,7 +34,4 @@ const mapStateToProps = createStructuredSelector({
   itemCount: selectCartItemsCount
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

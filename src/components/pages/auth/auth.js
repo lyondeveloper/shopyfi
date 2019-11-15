@@ -3,13 +3,13 @@ import React from 'react';
 import SignIn from '../../sign-in/sign-in';
 import SignUp from '../../sign-up/sign-up';
 
-import './auth.scss';
+import { AuthContainer } from './auth.styles';
 
 const Auth = () => (
-  <div className='auth'>
+  <AuthContainer>
     <SignIn />
     <SignUp />
-  </div>
+  </AuthContainer>
 );
 
 export default Auth;
