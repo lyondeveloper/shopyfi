@@ -17,25 +17,36 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
+import CurrentUserContext from './contexts/user/user.context'
+
 class App extends React.Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      currentUser: null
+    };
+  }
+
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot(snapShot => {
-          setCurrentUser({
+          this.setState({
+            currentUser: {
             id: snapShot.id,
             ...snapShot.data()
-          });
+            }
+          })
         });
       }
 
-      setCurrentUser(userAuth);
+      this.setState({currentUser: userAuth});
     });
   }
 
@@ -46,7 +57,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <CurrentUserContext.Provider value={this.state.currentUser}>
+          <Header />
+        </CurrentUserContext.Provider>
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
