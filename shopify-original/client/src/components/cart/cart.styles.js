@@ -28,5 +28,5 @@ export const EmptyMessageContainer = styled.span`
 `;
 
 export const ButtonContainer = styled(CustomButton)`
-  margin-top: auto;
+  margin-top: 0.5rem;
 `;

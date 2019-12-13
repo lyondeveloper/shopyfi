@@ -22,3 +22,17 @@ export const deleteItem = item => ({
 export const clearCart = () => ({
   type: types.CLEAR_CART
 });
+
+export const saveCart = (cartItems) => ({
+  type: types.SAVE_CART,
+  payload: cartItems
+});
+
+export const saveCartSuccess = () => ({
+  type: types.SAVE_CART_SUCCESS
+});
+
+export const saveCartFailure = (err) => ({
+  type: types.SAVE_CART_FAILURE,
+  payload: err
+});

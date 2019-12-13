@@ -14,7 +14,7 @@ import {
 
 import { selectCartItems } from '../../redux/cart/cartSelectors';
 import { createStructuredSelector } from 'reselect';
-import { toggleCartDropdown } from '../../redux/cart/cartActions';
+import { toggleCartDropdown, saveCart } from '../../redux/cart/cartActions';
 
 const Cart = ({ cartItems, history, dispatch }) => (
   <CartDropdownContainer>
@@ -34,6 +34,15 @@ const Cart = ({ cartItems, history, dispatch }) => (
       {' '}
       GO TO CHECKOUT{' '}
     </ButtonContainer>
+    {/* <ButtonContainer
+      onClick={() => {
+        history.push('/checkout');
+        dispatch(saveCart(cartItems));
+      }}
+    >
+      {' '}
+      SAVE CART{' '}
+    </ButtonContainer> */}
   </CartDropdownContainer>
 );
 
